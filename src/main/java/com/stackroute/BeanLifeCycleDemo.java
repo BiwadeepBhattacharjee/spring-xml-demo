@@ -2,6 +2,7 @@ package com.stackroute;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,7 +15,7 @@ public class BeanLifeCycleDemo implements InitializingBean, DisposableBean {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("BeanFile.xml");
 
         ((ClassPathXmlApplicationContext) applicationContext).registerShutdownHook();
-        BeanLifeCycleDemo beanLifeCycleDemo = (BeanLifeCycleDemo) applicationContext.getBean("lifecycle");
+        BeanLifeCycleDemo beanLifeCycleDemo = (BeanLifeCycleDemo) applicationContext.getBean("cycle");
 
 
 

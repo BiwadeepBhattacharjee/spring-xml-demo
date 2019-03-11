@@ -23,31 +23,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
+
+
 public class Main {
 
     public  static  void main(String gopal []) {
 
-        XmlBeanFactory xmlBeanFactory= new XmlBeanFactory ( new ClassPathResource("BeanFile.xml"));
-        Movie movieFirst= (Movie)xmlBeanFactory.getBean("movie1");
-        Movie moviesecond=(Movie)xmlBeanFactory.getBean("movie1");
-
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("BeanFile.xml");
-        Movie movie=(Movie)applicationContext.getBean("movie2");
-        Movie movie2=(Movie)applicationContext.getBean("movie2");
-
-        Movie movieB=(Movie)applicationContext.getBean("movieB");
-
-
-        System.out.println(movieFirst.getActor());
-
-        System.out.println(movie.getActor());
-
-        System.out.println(movie==movie2);
-
-        System.out.println(movieFirst==moviesecond);
-
-        System.out.println(movieB.getActor());
-        // BeanDefinitionRegistry beanDefinitionRegistry= new BeanDefinitionReader("BeanFile.xml");
-
+        ((ClassPathXmlApplicationContext) applicationContext).registerShutdownHook();
+        BeanLifeCycleDemo beanLifeCycleDemo=(BeanLifeCycleDemo) applicationContext.getBean("cycle");
     }
 }
